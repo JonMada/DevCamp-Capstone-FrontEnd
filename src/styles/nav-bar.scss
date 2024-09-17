@@ -6,7 +6,7 @@
     align-items: center;
     gap: 150px;
     border: 5px solid $black;
-    border-left: none;
+    border-right: none;
     position: sticky;
     top: 0;
     background-color: $white-humo; 
@@ -14,6 +14,7 @@
     padding: 0 20px;
     transition: top 0.3s ease; 
     top: 10px;
+    z-index: 1;
     
     .logo-wrapper {
       height: 100%;
@@ -46,10 +47,6 @@
         display: inline-block; 
         transition: color 0.3s ease;
     
-        
-        &:hover {
-            color: $black; 
-        }
     
         &::before {
             content: '';

@@ -5,10 +5,14 @@ import Home from './components/pages/home';
 import Books from './components/pages/books';
 import NavBar from "./components/navigation/nav-bar";
 
+import Icons from '../src/helpers/icons';
+
 
  export default class App extends Component {
   constructor(props){
     super(props);
+
+    Icons();
 
   }
   
