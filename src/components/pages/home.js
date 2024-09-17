@@ -34,7 +34,10 @@ export default class Home extends Component {
       'web development',
       'music',
       'folklore',
-      'politics'
+      'politics',
+      'social media',
+      'travelling book',
+      'photografy'
     ];
 
     const randomIndex = Math.floor(Math.random() * queries.length);
