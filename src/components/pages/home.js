@@ -47,6 +47,7 @@ export default class Home extends Component {
     componentDidMount() {
       this.getBooks();
     }
+    
   
     getBooks = async () => {
       const query = this.getRandomQuery();
