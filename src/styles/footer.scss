@@ -1,0 +1,18 @@
+.footer-wrapper {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    color: $black;
+    padding: 20px;
+    border: 5px solid $black;
+    border-left: none;
+    border-top: none;
+
+
+    p {
+        margin-left: 20px;
+        font-weight: 400;
+    }
+}

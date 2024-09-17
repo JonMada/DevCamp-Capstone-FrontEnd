@@ -5,6 +5,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 
 import HeroSection from "../sections/hero-section";
 import BooksRecommendation from "../books/books-recomendation";
+import Footer from "../sections/footer";
 
 export default class Home extends Component {
   constructor(props) {
@@ -71,14 +72,18 @@ export default class Home extends Component {
     render() {
       return (
         <div>
-          <HeroSection />
-          {this.state.loading ? (
-            <div className="loader-container">
-              <ClipLoader loading={this.state.loading} size={250} color='#fffc33'/>
-            </div>
-          ) : (
-          <BooksRecommendation books={this.state.books} />
-        )}
+            <HeroSection />
+
+            {this.state.loading ? (
+              <div className="loader-container">
+                <ClipLoader loading={this.state.loading} size={250} color='#fffc33'/>
+              </div>
+            ) : (
+            <BooksRecommendation books={this.state.books} />
+            )}
+
+            <Footer/>
+            
         </div>
       );
     }
