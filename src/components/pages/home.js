@@ -73,7 +73,7 @@ export default class Home extends Component {
       return (
         <div>
             <HeroSection />
-
+            
             {this.state.loading ? (
               <div className="loader-container">
                 <ClipLoader loading={this.state.loading} size={250} color='#fffc33'/>
@@ -83,7 +83,6 @@ export default class Home extends Component {
             )}
 
             <Footer/>
-            
         </div>
       );
     }

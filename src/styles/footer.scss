@@ -15,4 +15,8 @@
         margin-left: 20px;
         font-weight: 400;
     }
+
+    @media (max-width: 1024px) {
+        font-size: 1em;
+    }
 }

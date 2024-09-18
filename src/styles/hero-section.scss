@@ -20,7 +20,7 @@
         height: 100%; 
         object-fit: cover; 
         z-index: -1; 
-        filter: brightness(30%);
+        filter: brightness(70%);
     }
 
 
@@ -41,5 +41,54 @@
         align-self: flex-end;
         text-align: right;
         color: $yellow;
+    }
+
+    @media (max-width: 1300px) {
+        height: auto;
+        padding: 20px;
+        
+        .text-wrapper {
+            font-size: 4em; 
+            word-spacing: -0.2em;
+            letter-spacing: -0.05em;
+        }
+
+        .icon-wrapper {
+            font-size: 5em; 
+        }
+    }
+
+    
+    @media (max-width: 768px) {
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px;
+
+        .text-wrapper {
+            font-size: 3em; 
+            margin-left: 0;
+            word-spacing: -0.1em;
+            letter-spacing: 0;
+        }
+
+        .icon-wrapper {
+            font-size: 4em; 
+            margin: 10px 0; 
+        }
+    }
+
+    @media (max-width: 480px) {
+        height: auto;
+        padding: 5px;
+
+        .text-wrapper {
+            font-size: 2.5em; 
+        }
+
+        .icon-wrapper {
+            font-size: 3em; 
+        }
     }
 }
