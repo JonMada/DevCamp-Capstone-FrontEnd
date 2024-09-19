@@ -50,25 +50,27 @@ export default class Home extends Component {
     }
     
   
-    getBooks = async () => {
+    getBooks() {
       const query = this.getRandomQuery();
       const maxResults = 10;
       const language = "en";
   
       const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=${maxResults}&orderBy=relevance&langRestrict=${language}&key=AIzaSyDJS-tJrHMTU6AmdwZde8tSa5KKSd1JC-k`;
   
-      try {
-        const response = await axios.get(url);
-        console.log(response.data);
-        this.setState({
-          books: response.data.items,
-          loading: false
+      axios.get(url)
+        .then(response => {
+          console.log("Successful getBooks", response.data);
+          this.setState({
+            books: response.data.items,
+            loading: false
+          });
         })
-      } catch (error) {
-        console.error('Error getting recomendations:', error);
-      }
-    };
-  
+        .catch(error => {
+          console.error('Error getting recommendations:', error);
+        });
+    }
+
+    
     render() {
       return (
         <div>

@@ -11,10 +11,7 @@ export default class NavBar extends Component {
       this.state = {
       };
     }
-
-   
-  
-  
+    
     render() {
       const { isAuthenticated, handleSignOut } = this.props
       return (

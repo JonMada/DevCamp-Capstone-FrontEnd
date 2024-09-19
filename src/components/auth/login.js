@@ -56,7 +56,7 @@ const Login = (props) => {
                 placeholder='Username'
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                required
+                required 
               />
             </div>
             <div className='password-wrapper'>
