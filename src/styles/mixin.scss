@@ -1,0 +1,22 @@
+//Buttons
+
+@mixin button-styles{
+
+  background-color: $black;
+  color: $white-humo;
+  padding: 20px;
+  font-size: 2.2em;
+  font-family: "Roboto Mono", monospace, sans-serif;
+  border:  5px solid $black;
+  cursor: pointer;
+  font-weight: 800;
+  word-spacing: -0.35em;
+  letter-spacing: -0.05em;
+  transition: background-color 0.1s;
+  text-align: left;
+
+  &:hover {
+    background-color: $white-humo;
+    color: $black;
+  }
+}

@@ -14,6 +14,7 @@ export default class NavBar extends Component {
   
   
     render() {
+      const { isAuthenticated, onSignOut } = this.props
       return (
         <div className="navbar-wrapper">
             <div className="logo-wrapper">
@@ -23,10 +24,19 @@ export default class NavBar extends Component {
                 
             </div>
             <div className="links-wrapper">
+              {isAuthenticated ? (
+              <>
                 <Link to="/books">BOOKS</Link>
                 <Link to="/my-library">MY LIBRARY</Link>
+                <button onClick={onSignOut} className="sign-out-button">SIGN OUT</button>
+              </>
+            ) : (
+              <>
+                <Link to="/books">BOOKS</Link>
                 <Link to="/register">REGISTER</Link>
                 <Link to="/auth">LOGIN</Link>
+              </>
+            )}
             </div>
         </div>
       )
