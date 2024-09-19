@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Logo from '../../static/assets/logo/logo.png';
 
@@ -27,7 +28,9 @@ export default class NavBar extends Component {
               <>
                 <Link to="/books">BOOKS</Link>
                 <Link to="/my-library">MY LIBRARY</Link>
-                <button onClick={handleSignOut} className="sign-out-button">SIGN OUT</button>
+                <button onClick={handleSignOut} className="sign-out-button">
+                  <FontAwesomeIcon icon='xmark'/>
+                </button>
               </>
             ) : (
               <>

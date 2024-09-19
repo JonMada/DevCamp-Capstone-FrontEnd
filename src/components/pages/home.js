@@ -52,7 +52,7 @@ export default class Home extends Component {
   
     getBooks() {
       const query = this.getRandomQuery();
-      const maxResults = 10;
+      const maxResults = 12;
       const language = "en";
   
       const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=${maxResults}&orderBy=relevance&langRestrict=${language}&key=AIzaSyDJS-tJrHMTU6AmdwZde8tSa5KKSd1JC-k`;
@@ -70,7 +70,7 @@ export default class Home extends Component {
         });
     }
 
-    
+
     render() {
       return (
         <div>

@@ -36,6 +36,19 @@
       display: flex;
       gap: 30px;
       margin-right: 25px;
+
+      .sign-out-button {
+        border: 4px solid $black;
+        font-size: 1.5em;
+        font-weight: 600;
+        color: $black;
+        transition: 0.5s ease-in-out;
+        cursor: pointer;
+
+            &:hover {
+                background-color: $yellow;
+            }
+      }
     }
   
     .links-wrapper a {

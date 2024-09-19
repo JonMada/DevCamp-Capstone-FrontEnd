@@ -1,8 +1,8 @@
-import { faAnglesDown, faCopyright, faGear} from "@fortawesome/free-solid-svg-icons";
+import { faAnglesDown, faCopyright, faGear, faXmark} from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 const Icons = () => {
-    return library.add(faAnglesDown, faCopyright, faGear);
+    return library.add(faAnglesDown, faCopyright, faGear, faXmark);
 };
 
 export default Icons;

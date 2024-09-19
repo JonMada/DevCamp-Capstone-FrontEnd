@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './components/pages/home';
 import Books from './components/pages/books';
 import Login from "./components/auth/login";
+import Register from './components/auth/register';
 import NavBar from "./components/navigation/nav-bar";
 
 import Icons from '../src/helpers/icons';
