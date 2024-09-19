@@ -17,7 +17,7 @@ import Icons from '../src/helpers/icons';
     this.handleSignOut = this.handleSignOut.bind(this);
     
     this.state = {
-      isAuthenticated: false,
+      isAuthenticated: !!localStorage.getItem('token'),
     };
 
     Icons();
@@ -46,7 +46,12 @@ import Icons from '../src/helpers/icons';
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/books" element={<Books />} />
-              <Route path="/auth" element={<Login />}/>
+              <Route
+                path="/auth"
+                element={
+                  <Login setAuth={this.handleAuthChange} />
+                }
+              />
             </Routes>
         </div>
     </Router>

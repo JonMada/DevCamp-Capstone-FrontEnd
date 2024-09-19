@@ -11,10 +11,12 @@ export default class NavBar extends Component {
       this.state = {
       };
     }
+
+   
   
   
     render() {
-      const { isAuthenticated, onSignOut } = this.props
+      const { isAuthenticated, handleSignOut } = this.props
       return (
         <div className="navbar-wrapper">
             <div className="logo-wrapper">
@@ -28,7 +30,7 @@ export default class NavBar extends Component {
               <>
                 <Link to="/books">BOOKS</Link>
                 <Link to="/my-library">MY LIBRARY</Link>
-                <button onClick={onSignOut} className="sign-out-button">SIGN OUT</button>
+                <button onClick={handleSignOut} className="sign-out-button">SIGN OUT</button>
               </>
             ) : (
               <>
