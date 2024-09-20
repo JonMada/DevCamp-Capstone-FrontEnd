@@ -2,7 +2,6 @@
 .login-container {
     display: flex;
     flex-direction: column;
-    height: 80vh;
     box-sizing: border-box;
 
     .login-heading {
@@ -27,11 +26,9 @@
         background-color: $yellow;
         border: 5px solid $black;
         border-top: none;
-        border-right: none;
         height: 630px;
 
         
-    
         .left-column{
             font-size: 19em;
             color: $black;
@@ -124,6 +121,7 @@
             .btn {
                 @include button-styles();
                 width: 100%;
+                border-right: none;
             }
 
 

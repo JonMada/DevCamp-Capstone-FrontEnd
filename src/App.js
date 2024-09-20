@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import Modal from 'react-modal';
 
 import Home from './components/pages/home';
 import Books from './components/pages/books';
@@ -8,6 +9,8 @@ import Register from './components/auth/register';
 import NavBar from "./components/navigation/nav-bar";
 
 import Icons from '../src/helpers/icons';
+
+Modal.setAppElement('#root');
 
 
  export default class App extends Component {
@@ -53,6 +56,7 @@ import Icons from '../src/helpers/icons';
                   <Login setAuth={this.handleAuthChange} />
                 }
               />
+              <Route path="/register" element={<Register />} />
             </Routes>
         </div>
     </Router>

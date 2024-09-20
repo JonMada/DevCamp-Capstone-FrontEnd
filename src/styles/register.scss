@@ -1,0 +1,87 @@
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+
+  .register-heading {
+    border: 5px solid $black;
+    border-top: none;
+    border-left: none;
+    height: 130px;
+    box-sizing: border-box;
+    color: $black;
+    font-weight: 800;
+    word-spacing: -0.35em;
+    letter-spacing: -0.08em;
+    font-size: 6em;
+  }
+
+  .register-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    background-color: $yellow;
+    border: 5px solid $black;
+    border-top: none;
+    height: 720px;
+
+    .left-column{
+        font-size: 19em;
+        color: $black;
+    }
+
+    .right-column {
+      color: $black;
+      font-size: 1.5em;
+      font-weight: 700;
+      box-sizing: border-box;
+      overflow: hidden;
+      width: 100%; 
+
+      .username-wrapper,
+      .email-wrapper,
+      .password-wrapper {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+
+        label {
+          margin-bottom: 5px;
+        }
+
+        input {
+          background-color: $white-humo;
+          border: 5px solid $black;
+          height: 50px;
+          width: 100%;
+          font-family: "Roboto Mono", monospace, sans-serif;
+          font-size: large;
+          padding: 10px;
+          font-weight: 400;
+
+          &::placeholder {
+            font-family: "Roboto Mono", monospace, sans-serif;
+            font-size: large;
+            padding: 10px;
+          }
+        }
+      }
+
+      .register-error {
+        color: rgb(217, 39, 39);
+        margin-bottom: 1em;
+        height: 15px;
+        text-align: right;
+        margin-right: 10px;
+      }
+
+      .btn {
+        @include button-styles(); 
+        width: 100%;
+        border-right: none;
+      }
+    }
+  }
+}

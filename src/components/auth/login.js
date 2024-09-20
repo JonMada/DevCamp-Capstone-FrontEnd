@@ -32,7 +32,7 @@ const Login = (props) => {
       navigate("/");
     })
     .catch((error) => {
-      setError('Invalid username or password');
+      setError('Invalid username or password.');
       setUsername('');
       setPassword('');
       console.error('HandleSubmit error', error.response?.data || error.message);
