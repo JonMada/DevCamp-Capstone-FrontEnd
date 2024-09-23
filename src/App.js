@@ -6,7 +6,9 @@ import Home from './components/pages/home';
 import Books from './components/pages/books';
 import Login from "./components/auth/login";
 import Register from './components/auth/register';
+import MyLibrary from "./components/pages/my-library";
 import NavBar from "./components/navigation/nav-bar";
+import PrivateRoute from "./components/routes/private-routes";
 
 import Icons from '../src/helpers/icons';
 
@@ -50,13 +52,24 @@ Modal.setAppElement('#root');
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/books" element={<Books />} />
+              <Route path="/register" element={<Register />} />
+              
               <Route
                 path="/auth"
                 element={
                   <Login setAuth={this.handleAuthChange} />
                 }
               />
-              <Route path="/register" element={<Register />} />
+
+              <Route
+                path="/my-library"
+                element={
+                  <PrivateRoute isAuthenticated={this.state.isAuthenticated}>
+                    <MyLibrary />
+                  </PrivateRoute>
+                }
+              />
+              
             </Routes>
         </div>
     </Router>

@@ -21,6 +21,9 @@ const Register = () => {
       });
       setIsModalOpen(true);
     } catch (error) {
+      setEmail('');
+      setUsername('');
+      setPassword('');
       setError('Registration failed. Please try again.');
       console.error('Error during registration:', error);
     }
