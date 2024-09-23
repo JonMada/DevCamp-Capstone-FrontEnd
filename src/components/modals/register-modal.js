@@ -28,8 +28,6 @@ const RegisterModal = ({ isOpen, onClose }) => {
         </div>
         </div>
      
-      
-     
     </Modal>
   );
 };

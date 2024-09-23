@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 
@@ -11,6 +11,19 @@ const BookCreateModal = ({ isOpen, onClose, onBookAdded }) => {
   const [rating, setRating] = useState(1);
   const [coverImage, setCoverImage] = useState('');
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setTitle('');
+      setAuthor('');
+      setYear('');
+      setSummary('');
+      setReview('');
+      setRating(1);
+      setCoverImage('');
+      setError(null);
+    }
+  }, [isOpen]);
 
   const handleCreateBook = async (e) => {
     e.preventDefault();
@@ -59,6 +72,7 @@ const BookCreateModal = ({ isOpen, onClose, onBookAdded }) => {
   return (
     <Modal isOpen={isOpen} onRequestClose={onClose} className="modal" overlayClassName="overlay">
       <h2>Add New Book</h2>
+      <button onClick={onClose} className="close-button">X</button>
       <form onSubmit={handleCreateBook}>
         <div>
           <label>TITLE</label>

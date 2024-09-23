@@ -12,6 +12,7 @@
   word-spacing: -0.35em;
   letter-spacing: -0.08em;
   font-size: 1.2em; 
+  border: 5px solid $black;
 
     .content-wrapper {
       display: flex;
@@ -34,6 +35,7 @@
 
       .btn {
         @include button-styles();
+        width: 100%;
         font-size: 1em;
       }
     }
