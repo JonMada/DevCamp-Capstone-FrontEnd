@@ -15,6 +15,16 @@
     word-spacing: -0.35em;
     letter-spacing: -0.08em;
     font-size: 6em;
+
+    @media (max-width: 768px) {
+      font-size: 4em;
+      height: 100px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 3em;
+      height: 80px;
+    }
   }
 
   .register-form {
@@ -27,9 +37,23 @@
     border-top: none;
     height: 720px;
 
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+
     .left-column{
         font-size: 19em;
         color: $black;
+
+        @media (max-width: 768px) {
+          font-size: 10em;
+          text-align: center;
+        }
+  
+        @media (max-width: 480px) {
+          font-size: 7em;
+        }
     }
 
     .right-column {
@@ -39,6 +63,14 @@
       box-sizing: border-box;
       overflow: hidden;
       width: 100%; 
+
+      @media (max-width: 768px) {
+        font-size: 1.2em;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 1em;
+      }
 
       .username-wrapper,
       .email-wrapper,
@@ -61,10 +93,16 @@
           padding: 10px;
           font-weight: 400;
 
-          &::placeholder {
-            font-family: "Roboto Mono", monospace, sans-serif;
-            font-size: large;
-            padding: 10px;
+            &::placeholder {
+              font-family: "Roboto Mono", monospace, sans-serif;
+              font-size: large;
+              padding: 10px;
+
+              @media (max-width: 480px) {
+                font-size: medium;
+                height: 45px;
+              }
+            }
           }
         }
       }
@@ -75,12 +113,19 @@
         height: 15px;
         text-align: right;
         margin-right: 10px;
+
+        @media (max-width: 480px) {
+          font-size: 0.9em;
+        }
       }
 
       .btn {
         @include button-styles(); 
         width: 100%;
         border-right: none;
+
+        @media (max-width: 480px) {
+          font-size: 1em;
       }
     }
   }
