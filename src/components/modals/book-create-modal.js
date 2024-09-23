@@ -92,7 +92,7 @@ const BookCreateModal = ({ isOpen, onClose, onBookAdded }) => {
         </div>
         <div>
           <label>REVIEW</label>
-          <input type="text" value={review} onChange={(e) => setReview(e.target.value)} required />
+          <textarea type="text" value={review} onChange={(e) => setReview(e.target.value)} required />
         </div>
         <div>
           <label>RATING</label>
