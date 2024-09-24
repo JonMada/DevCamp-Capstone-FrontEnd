@@ -46,6 +46,16 @@
           grid-template-columns: repeat(3, 1fr); 
           gap: 15px;
           margin-bottom: 10px;
+
+          input[type=number]::-webkit-outer-spin-button,
+          input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+
+          input[type=number] {
+            -moz-appearance: textfield;
+          }
   
           input {
             width: 100%;
@@ -55,6 +65,8 @@
             line-height: 1.4em;
             box-sizing: border-box;
           }
+
+          
         }
   
         .row-2 {
