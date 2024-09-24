@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const BookCreateModal = ({ isOpen, onClose, onBookAdded }) => {
   const [title, setTitle] = useState('');
@@ -70,50 +71,77 @@ const BookCreateModal = ({ isOpen, onClose, onBookAdded }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onRequestClose={onClose} className="modal" overlayClassName="overlay">
-      <h2>Add New Book</h2>
-      <button onClick={onClose} className="close-button">X</button>
-      <form onSubmit={handleCreateBook}>
-        <div>
-          <label>TITLE</label>
-          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+    <Modal isOpen={isOpen} onRequestClose={onClose} className="modal-book-creator" overlayClassName="overlay">
+      <div className='book-create-wrapper'>
+        <div className='header-wrapper'>
+          <h2>ADD NEW BOOK</h2>
+          <button onClick={onClose} className="close-button">
+            <FontAwesomeIcon icon='xmark'/>
+          </button>
         </div>
-        <div>
-          <label>AUTHOR</label>
-          <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)} required />
-        </div>
-        <div>
-          <label>YEAR</label>
-          <input type="number" value={year} onChange={(e) => setYear(e.target.value)} required />
-        </div>
-        <div>
-          <label>SUMMARY</label>
-          <textarea value={summary} onChange={(e) => setSummary(e.target.value)} required />
-        </div>
-        <div>
-          <label>REVIEW</label>
-          <textarea type="text" value={review} onChange={(e) => setReview(e.target.value)} required />
-        </div>
-        <div>
-          <label>RATING</label>
-          <input 
-            type="range" 
-            min="1" 
-            max="5" 
-            value={rating} 
-            onChange={(e) => setRating(e.target.value)} 
-          />
-          <span>{rating} / 5</span> 
-        </div>
-        <div>
-          <label>COVER IMAGE URL</label>
-          <input type="text" value={coverImage} onChange={(e) => setCoverImage(e.target.value)} required />
-        </div>
-        <div className='creating-error'>
-          {error && <p>{error}</p>}
-        </div>
-        <button type="submit">ADD BOOK</button>
-      </form>
+
+        <div className='form-wrapper'>
+            <form onSubmit={handleCreateBook}>
+          
+              <div className="row-1">
+                <div>
+                  <label>TITLE</label>
+                  <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+                </div>
+                <div>
+                  <label>AUTHOR</label>
+                  <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)} required />
+                </div>
+                <div>
+                  <label>YEAR</label>
+                  <input type="number" value={year} onChange={(e) => setYear(e.target.value)} required />
+                </div>
+              </div>
+
+        
+              <div className="row-2">
+                <div>
+                  <label>SUMMARY</label>
+                  <textarea value={summary} onChange={(e) => setSummary(e.target.value)} required />
+                </div>
+                <div>
+                  <label>REVIEW</label>
+                  <textarea value={review} onChange={(e) => setReview(e.target.value)} required />
+                </div>
+              </div>
+
+              <div className='creating-error'>
+                {error && <p>{error}</p>}
+              </div>
+          
+              <div className="row-3">
+               
+                <div className="cover-url">
+                    <label>COVER IMAGE URL</label>
+                    <input type="text" value={coverImage} onChange={(e) => setCoverImage(e.target.value)} required />
+                  </div>
+
+                <div className="rating">
+                  <label>RATING</label>
+                  <input 
+                    type="range" 
+                    min="1" 
+                    max="5" 
+                    value={rating} 
+                    onChange={(e) => setRating(e.target.value)} 
+                  />
+                  <span>{rating} / 5</span> 
+                </div>
+
+                <button type="submit" className="submit-button">ADD BOOK</button>
+
+              </div>
+
+            </form>
+          </div>
+        
+      </div>
+      
     </Modal>
   );
 };

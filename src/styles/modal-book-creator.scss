@@ -1,0 +1,195 @@
+.modal-book-creator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background: $yellow;
+    height: auto;
+    width: 90%; 
+    max-width: 1400px; 
+    max-height: 1500px;
+    color: $black;
+    border: 5px solid $black;
+    font-weight: 500;
+  
+    .book-create-wrapper {
+      display: flex;
+      flex-direction: column;
+  
+      .header-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+  
+        button {
+          border: 4px solid $black;
+          font-size: 1em;
+          font-weight: 600;
+          color: $white-humo;
+          cursor: pointer;
+          background-color: $black;
+          &:hover {
+            background-color: $white-humo;
+            color: $black
+          }
+        }
+      }
+  
+      .form-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+  
+        .row-1 {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr); 
+          gap: 15px;
+          margin-bottom: 10px;
+  
+          input {
+            width: 100%;
+            padding: 8px;
+            border: 3px solid $black;
+            font-size: 1em;
+            line-height: 1.4em;
+            box-sizing: border-box;
+          }
+        }
+  
+        .row-2 {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+  
+          textarea {
+            width: 100%;
+            height: 100px;
+            resize: none;
+            padding: 10px;
+            border: 3px solid $black;
+            font-size: 1em;
+            overflow-y: auto;
+            box-sizing: border-box;
+          }
+        }
+  
+        .row-3 {
+          display: flex;
+          justify-content: space-between;
+          gap: 20px;
+        }
+  
+        .rating {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+  
+          input[type="range"] {
+            -webkit-appearance: none; 
+            width: 300px; 
+            height: 8px;
+            background: $black; 
+  
+            &::-webkit-slider-runnable-track {
+              background: $white-humo; 
+              height: 5px;
+            }
+  
+            &::-moz-range-track {
+              background: $white-humo;
+              height: 8px;
+            }
+  
+            &::-webkit-slider-thumb {
+              -webkit-appearance: none;
+              width: 30px;
+              height: 11px; 
+              background: $black; 
+              cursor: pointer;
+              margin-top: -3px;
+            }
+  
+            &::-moz-range-thumb {
+              width: 30px;
+              height: 11px; 
+              background: $black; 
+              cursor: pointer;
+              margin-top: -3px;
+            }
+          }
+        }
+  
+        .cover-url {
+          display: flex;
+          flex-direction: column;
+          width: 500px; 
+          
+          input[type="text"] {
+            padding: 8px;
+            border: 3px solid $black;
+            font-size: 1em;
+            line-height: 1.4em;
+          }
+        }
+  
+        .submit-button {
+          @include button-styles();
+        }
+      }
+  
+      .creating-error {
+        color: rgb(217, 39, 39);
+        margin-bottom: 1em;
+        height: 20px;
+        text-align: right;
+        margin-right: 10px;
+      }
+    }
+  
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.516);
+    }
+  }
+  
+  
+  @media (max-width: 1300px) {
+    .modal-book-creator {
+      .form-wrapper {
+        .row-1 {
+          display: flex; 
+          flex-direction: column; 
+        }
+  
+        .row-2 {
+          flex-direction: column;
+        }
+  
+        .row-3 {
+          flex-direction: column; 
+          gap: 15px; 
+        }
+  
+        .cover-url {
+          width: 100%; 
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+  
+        .rating input[type="range"] {
+          width: 100%; 
+          
+        }
+
+        .submit-button {
+            max-width: 200px;
+        }
+      }
+    }
+  }
+  
