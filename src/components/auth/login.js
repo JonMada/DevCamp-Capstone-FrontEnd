@@ -13,7 +13,7 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
   
-    console.log('Submitting:', { username, password });
+    console.log('Submitting...')
   
     axios.post(
       'https://devcamp-capstone-backend-d0f2.onrender.com/users/token',
@@ -26,7 +26,6 @@ const Login = (props) => {
     )
     .then((response) => {
       const { access_token } = response.data;
-      console.log('Response:', response.data);
       localStorage.setItem('token', access_token);
       props.setAuth(true);
       navigate("/");

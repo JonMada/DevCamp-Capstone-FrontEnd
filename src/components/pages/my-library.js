@@ -33,6 +33,9 @@ export default class MyLibrary extends Component {
           Authorization: `Bearer ${token}`,
         },
       });
+
+      console.log("Sucessfull getMyBooks");
+      
       this.setState({ 
         books: response.data,
         loading: false
