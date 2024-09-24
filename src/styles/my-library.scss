@@ -1,7 +1,6 @@
 .my-library { 
     text-align: center;
 
-
     .header {
         text-align: left;
         height: 130px;
@@ -11,13 +10,29 @@
         word-spacing: -0.35em;
         letter-spacing: -0.08em;
         font-size: 5em;
+
+        @media (max-width: 768px) {
+            font-size: 3.5em; 
+        }
+
+        @media (max-width: 480px) {
+            font-size: 2.5em; 
+        }
     }
 
-    .books-wrapper{
+    .books-wrapper {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        align-items: stretch;
-        border: 5px solid $black;
+        grid-template-columns: 1fr 1fr 1fr; 
+        align-items: center;
+        grid-gap: 10px;
+
+        @media (max-width: 1400px) {
+            grid-template-columns: 1fr 1fr; 
+        }
+
+        @media (max-width: 700px) {
+            grid-template-columns: 1fr;
+        }
 
         .book-item {
             width: 100%;
@@ -32,7 +47,13 @@
             align-items: center;
             justify-items: center;
             transition: color 0.4s ease-in-out;
+            border: 5px solid $black;
+
+            @media (max-width: 1400px) {
+                grid-template-columns: 1fr ; 
+            }
     
+
             &::before {
                 content: '';
                 position: absolute;
@@ -46,36 +67,36 @@
                 transition: transform 0.4s ease;
                 z-index: -1; 
             }
-    
+
             &:hover::before {
                 transform: scaleY(1);
                 transform-origin: top; 
             }
 
-            &:hover .image-link-book-item img{
+            &:hover .image-link-book-item img {
                 transform: scale(1.1);
                 filter: grayscale(0%);
             }
-    
+
             .image-link-book-item {
+                flex:1;
                 width: 100%;
                 height: 100%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-    
+
                 img {
                     height: 300px;
-                    width: auto;
+                    width: auto; 
                     object-fit: cover;
                     padding: 25px;
                     display: block;
                     transition: transform 0.5s ease;
                     filter: grayscale(100%);
-
                 }
-    
+
                 a {
                     text-decoration: none;
                     color: $black;
@@ -85,7 +106,7 @@
                     display: inline-block; 
                     transition: color 0.3s ease;
                     margin-top: 15px;
-    
+
                     &::before {
                         content: '';
                         position: absolute;
@@ -98,33 +119,31 @@
                         transform-origin: left;
                         transition: transform 0.5s;
                     }
-    
+
                     &:hover::before {
                         transform: scaleX(1);
                     }
                 }
             }
-    
+
             .info-book-item {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 text-align: center;
-                padding-right: 20px;
-    
+
                 h3 {
-                    font-size: 2em; 
+                    font-size: 1.2em; 
                     margin: 10px 0;
                     color: $black;
                 }
-    
+
                 p {
-                    font-size: 19px; 
+                    font-size: 1em; 
                     margin-bottom: 10px;
                 }
             }
         }
-        
     }
 
     .floating-button {
@@ -143,16 +162,20 @@
         cursor: pointer; 
         transition: background-color 0.3s, transform 0.3s; 
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    
+
         &:hover {
             transform: scale(1.1); 
             background-color: $yellow;
         }
-    
+
         svg {
             width: 30px; 
             height: 30px; 
         }
+
+        @media (max-width: 480px) {
+            width: 60px; 
+            height: 60px; 
+        }
     }
-    
 }
