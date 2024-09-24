@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
 import BookCreateModal from "../modals/book-create-modal";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ClipLoader from 'react-spinners/ClipLoader';
+
+
+const generateSlug = (title) => {
+    return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  };
 
 export default class MyLibrary extends Component {
   constructor(props) {
@@ -9,14 +17,15 @@ export default class MyLibrary extends Component {
       isModalOpen: false,
       books: [],
       error: null,
+      loading: true
     };
   }
 
   componentDidMount() {
-    this.fetchBooks();
+    this.getMyBooks();
   }
 
-  fetchBooks = async () => {
+  getMyBooks = async () => {
     const token = localStorage.getItem('token');
     try {
       const response = await axios.get('https://devcamp-capstone-backend-d0f2.onrender.com/books/my_books', {
@@ -24,10 +33,17 @@ export default class MyLibrary extends Component {
           Authorization: `Bearer ${token}`,
         },
       });
-      this.setState({ books: response.data });
+      this.setState({ 
+        books: response.data,
+        loading: false
+    });
+
     } catch (error) {
-      console.error('Error fetching books:', error);
-      this.setState({ error: 'Failed to load books.' });
+      console.error('Error getting my books:', error);
+      this.setState({ 
+        error: 'Failed to load books.',
+        loading: false
+    });
     }
   };
 
@@ -53,36 +69,50 @@ export default class MyLibrary extends Component {
     console.log(`Book clicked: ${bookId}`);
   };
 
-  render() {
-    const { books } = this.state;
+    render() {
+        const { books } = this.state;
 
-    return (
-      <div>
-        <h1>My Library</h1>
-        <button className="floating-button" onClick={this.openModal}>
-          Add Book
-        </button>
+        return (
+            <div className="my-library">
+                <div className="header">
+                    My Library
+                </div>
+                
 
-        <BookCreateModal
-          isOpen={this.state.isModalOpen}
-          onClose={this.closeModal}
-          onBookAdded={this.handleBookAdded}
-        />
+                <BookCreateModal
+                isOpen={this.state.isModalOpen}
+                onClose={this.closeModal}
+                onBookAdded={this.handleBookAdded}
+                />
 
-        {books.length === 0 ? (
-          <p>NO BOOKS FOUND</p>
-        ) : (
-          <ul>
-            {books.map((book) => (
-              <li key={book.id} onClick={() => this.handleBookClick(book.id)}>
-                <h3>{book.title}</h3>
-                <p>{book.author}</p>
-                <p>{book.year_published}</p>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    );
-  }
-}
+                {this.state.loading ? (
+                    <div className="loader-container">
+                        <ClipLoader loading={this.state.loading} size={250} color='#333' />
+                    </div>
+                ) : books.length === 0 ? ( 
+                    <p>NO BOOKS FOUND</p>
+                ) : ( 
+                    <div className="books-wrapper">
+                        {books.map((book) => (
+                        <div key={book.id} className="book-item">
+                            <div className="image-link-book-item">
+                            <img src={book.cover_image} alt="cover-image" />
+                            <Link to={`/book/${generateSlug(book.title)}`}>More info</Link>
+                            </div>
+                            <div className="info-book-item">
+                            <h3>{book.title}</h3>
+                            <p>{book.author}</p>
+                            <p>{book.year_published}</p>
+                            </div>
+                        </div>
+                    ))}
+                    </div>
+                )}
+                
+                <button className="floating-button" onClick={this.openModal}>
+                    <FontAwesomeIcon icon="plus"/>
+                </button>
+            </div>
+        );
+    }
+}      

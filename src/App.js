@@ -7,6 +7,7 @@ import Books from './components/pages/books';
 import Login from "./components/auth/login";
 import Register from './components/auth/register';
 import MyLibrary from "./components/pages/my-library";
+import BookDetails from "./components/books/book-details";
 import NavBar from "./components/navigation/nav-bar";
 import PrivateRoute from "./components/routes/private-routes";
 
@@ -69,8 +70,17 @@ Modal.setAppElement('#root');
                   </PrivateRoute>
                 }
               />
-              
-            </Routes>
+
+              <Route
+                path="/book/:slug"
+                element={
+                  <PrivateRoute isAuthenticated={this.state.isAuthenticated}>
+                    <BookDetails />
+                  </PrivateRoute>
+                }
+              />
+
+          </Routes>
         </div>
     </Router>
     )
