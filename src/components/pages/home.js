@@ -74,7 +74,7 @@ export default class Home extends Component {
             
             {this.state.loading ? (
               <div className="loader-container">
-                <ClipLoader loading={this.state.loading} size={250} color='#fffc33'/>
+                <ClipLoader loading={this.state.loading} size={250} color='#333'/>
               </div>
             ) : (
             <BooksRecommendation books={this.state.books} />

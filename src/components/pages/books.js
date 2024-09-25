@@ -7,8 +7,10 @@ export default class Books extends Component {
         super(props);
         this.state = {
             books: [],
+            filteredBooks: [],
             error: null,
             loading: true,
+            selectedCentury: 'All', 
         };
     }
 
@@ -23,6 +25,7 @@ export default class Books extends Component {
 
             this.setState({ 
                 books: response.data,
+                filteredBooks: response.data,  
                 loading: false
             });
 
@@ -35,22 +38,74 @@ export default class Books extends Component {
         }
     };
 
+  
+    filterByCentury = (century) => {
+        const { books } = this.state;
+
+        if (century === 'All') {
+            this.setState({ filteredBooks: books });
+        } else {
+            const centuryNumber = parseInt(century);
+            const filteredBooks = books.filter(book => {
+                const year = parseInt(book.year_published);
+                const bookCentury = Math.ceil(year / 100);
+                return bookCentury === centuryNumber;
+            });
+
+            this.setState({ filteredBooks });
+        }
+    };
+
+    handleCenturyClick = (century) => {
+        this.setState({ selectedCentury: century });
+        this.filterByCentury(century);
+    };
+
     render() {
-        const { books, loading } = this.state;
+        const { filteredBooks, loading, selectedCentury } = this.state;
 
         return (
             <div className="books">
                 <span className="books-header">Books</span>
 
+              
+                <div className="century-filter">
+                    <button
+                        className={`century-button ${selectedCentury === 'All' ? 'active' : ''}`}
+                        onClick={() => this.handleCenturyClick('All')}
+                    >
+                        All Centuries
+                    </button>
+                    <button
+                        className={`century-button ${selectedCentury === '19' ? 'active' : ''}`}
+                        onClick={() => this.handleCenturyClick('19')}
+                    >
+                        19th Century
+                    </button>
+                    <button
+                        className={`century-button ${selectedCentury === '20' ? 'active' : ''}`}
+                        onClick={() => this.handleCenturyClick('20')}
+                    >
+                        20th Century
+                    </button>
+                    <button
+                        className={`century-button ${selectedCentury === '21' ? 'active' : ''}`}
+                        onClick={() => this.handleCenturyClick('21')}
+                    >
+                        21st Century
+                    </button>
+                </div>
+
+                
                 {loading ? (
                     <div className="loader-container">
                         <ClipLoader loading={loading} size={250} color='#333' />
                     </div>
-                ) : books.length === 0 ? (
-                    <p>No books found</p>
+                ) : filteredBooks.length === 0 ? (
+                    <span className="books-no-found">NO BOOKS FOUND</span>
                 ) : (
                     <div className="books-wrapper">
-                        {books.map((book) => (
+                        {filteredBooks.map((book) => (
                             <div key={book.id} className="books-item">
                                 <div className="image-book-item">
                                     <img src={book.cover_image} alt={`Cover-image of ${book.title}`} />
