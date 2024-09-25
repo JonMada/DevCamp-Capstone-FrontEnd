@@ -65,12 +65,13 @@
                 height: 300px;
                 width: auto;
                 object-fit: cover;
-                padding: 25px;
                 display: block;
                 border-radius: 10px;
                 object-fit: cover; 
                 transition: transform 0.5s ease;
                 filter:grayscale(100%);
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
             }
 
             a {
@@ -81,7 +82,7 @@
                 position: relative;
                 display: inline-block; 
                 transition: color 0.3s ease;
-                margin-top: 15px;
+                margin-top: 30px;
 
                 &::before {
                     content: '';
