@@ -17,7 +17,8 @@ export default class MyLibrary extends Component {
       isModalOpen: false,
       books: [],
       error: null,
-      loading: true
+      loading: true,
+      bookToEdit: null,
     };
   }
 
@@ -35,7 +36,7 @@ export default class MyLibrary extends Component {
       });
 
       console.log("Sucessfull getMyBooks");
-      
+
       this.setState({ 
         books: response.data,
         loading: false
@@ -58,22 +59,51 @@ export default class MyLibrary extends Component {
   };
 
   openModal = () => {
-    this.setState({ isModalOpen: true });
+    this.setState({ isModalOpen: true, bookToEdit: null });
   };
 
   closeModal = () => {
     this.setState({ isModalOpen: false });
   };
 
-  handleBookClick = (bookId) => {
-    // Aquí podrías redirigir a la página de detalles del libro.
-    // Por ejemplo:
-    // this.props.history.push(`/books/${bookId}`);
-    console.log(`Book clicked: ${bookId}`);
+  openEditModal = (book) => {
+    this.setState({ isModalOpen: true, bookToEdit: book });
   };
 
+  handleBookUpdated = (updatedBook) => {
+    this.setState((prevState) => ({
+      books: prevState.books.map(book => 
+        book.id === updatedBook.id ? updatedBook : book
+      ),
+      isModalOpen: false, 
+      bookToEdit: null, 
+    }));
+  };
+
+  handleDeleteBook = async (bookId) => {
+    const token = localStorage.getItem('token');
+    try {
+      await axios.delete(`https://devcamp-capstone-backend-d0f2.onrender.com/books/${bookId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      this.setState((prevState) => ({
+        books: prevState.books.filter((book) => book.id !== bookId),
+      }));
+
+      console.log(`Book with id ${bookId} deleted successfully`);
+
+    } catch (error) {
+      console.error('Error deleting book:', error);
+    }
+  };
+
+
+
     render() {
-        const { books } = this.state;
+        const { books, bookToEdit } = this.state;
 
         return (
             <div className="my-library">
@@ -83,9 +113,11 @@ export default class MyLibrary extends Component {
                 
 
                 <BookCreateModal
-                isOpen={this.state.isModalOpen}
-                onClose={this.closeModal}
-                onBookAdded={this.handleBookAdded}
+                    isOpen={this.state.isModalOpen}
+                    onClose={this.closeModal}
+                    onBookAdded={this.handleBookAdded}
+                    bookToEdit={bookToEdit} 
+                    onBookUpdated={this.handleBookUpdated} 
                 />
 
                 {this.state.loading ? (
@@ -98,15 +130,34 @@ export default class MyLibrary extends Component {
                     <div className="books-wrapper">
                         {books.map((book) => (
                         <div key={book.id} className="book-item">
+
                             <div className="image-link-book-item">
-                            <img src={book.cover_image} alt="cover-image" />
-                            <Link to={`/book/${generateSlug(book.title)}`}>More info</Link>
+                                <img src={book.cover_image} alt="cover-image" />
+                                <Link 
+                                    to={`/book/${generateSlug(book.title)}`}
+                                    state={{ book: book }}
+                                >
+                                    More info
+                                </Link>
                             </div>
+
                             <div className="info-book-item">
-                            <h3>{book.title}</h3>
-                            <p>{book.author}</p>
-                            <p>{book.year_published}</p>
+                                <h3>{book.title}</h3>
+                                <p>{book.author}</p>
+                                <p>{book.year_published}</p>
+
+                                <div className="book-actions">
+                                <button onClick={() => this.openEditModal(book)}>
+                                    <FontAwesomeIcon icon="edit" />
+                                </button>
+                                <button onClick={() => this.handleDeleteBook(book.id)}>
+                                    <FontAwesomeIcon icon="trash" />
+                                </button>
+                                </div>
                             </div>
+
+                            
+
                         </div>
                     ))}
                     </div>

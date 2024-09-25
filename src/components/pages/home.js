@@ -25,19 +25,15 @@ export default class Home extends Component {
       'history', 
       'fantasy',  
       'mystery', 
-      'romance',  
-      'biography',
       'terror',
       'cinema',
       'sport biographies',
       'tattoos',
       'philosofy',
-      'web development',
       'music',
       'folklore',
       'politics',
       'social media',
-      'travelling book',
       'photografy'
     ];
 
@@ -52,7 +48,7 @@ export default class Home extends Component {
   
     getBooks() {
       const query = this.getRandomQuery();
-      const maxResults = 12;
+      const maxResults = 30;
       const language = "en";
   
       const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=${maxResults}&orderBy=relevance&langRestrict=${language}&key=AIzaSyDJS-tJrHMTU6AmdwZde8tSa5KKSd1JC-k`;

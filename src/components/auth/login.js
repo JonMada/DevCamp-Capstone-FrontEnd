@@ -25,6 +25,7 @@ const Login = (props) => {
       }
     )
     .then((response) => {
+      console.log(response.data);
       const { access_token } = response.data;
       localStorage.setItem('token', access_token);
       props.setAuth(true);

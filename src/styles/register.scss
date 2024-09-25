@@ -123,6 +123,7 @@
         @include button-styles(); 
         width: 100%;
         border-right: none;
+        font-size: 1.2em;
 
         @media (max-width: 480px) {
           font-size: 1em;
