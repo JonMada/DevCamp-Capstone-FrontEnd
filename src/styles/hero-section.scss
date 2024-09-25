@@ -1,5 +1,5 @@
 .hero-section-wrapper{
-    height: 830px;
+    height: 650px;
     border: 5px solid $black;
     border-left: none;
     border-top: none;
@@ -26,18 +26,21 @@
 
     .text-wrapper {
         width: 100%;
-        font-size: 6.1em;
-        font-weight: 800;
-        word-spacing: -0.35em;
-        letter-spacing: -0.08em;
-        line-height: 0.99;
-        margin-left: 20px;
+        box-sizing: border-box;
+        p{
+            font-size: 5.7em;
+            font-weight: 800;
+            word-spacing: -0.35em;
+            letter-spacing: -0.08em;
+            line-height: 0.99;
+            margin-left: 20px;
+            margin-top: 0;
+        }
     }
 
     .icon-wrapper {
         font-size: 7em;
         margin-right: 25px;
-        margin-bottom: 20px;
         align-self: flex-end;
         text-align: right;
         color: $yellow;

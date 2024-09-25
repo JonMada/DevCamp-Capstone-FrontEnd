@@ -2,17 +2,17 @@
     padding: 20px;
     max-width: 1700px;
     height: auto;
-    margin: 60px;
+    margin: 15px;
 }
 
 .book-details-content {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 50px;
 }
 
 .book-image img {
-    width: 450px;
+    width: 380px;
     height: auto;
     object-fit: cover;
     border-radius: 10px;

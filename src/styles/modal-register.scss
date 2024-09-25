@@ -24,6 +24,13 @@
         font-size: 1.5em;
         margin: 0;
       }
+
+      .book-title {
+        font-size: 1.5em; 
+        font-weight: bold; 
+        color: $black; 
+        background-color: $yellow;
+      }
     }
 
     .btn-wrapper {

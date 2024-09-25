@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClipLoader from 'react-spinners/ClipLoader';
 
+import DeleteModal from "../modals/delete-modal";
+
 
 const generateSlug = (title) => {
     return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -19,6 +21,8 @@ export default class MyLibrary extends Component {
       error: null,
       loading: true,
       bookToEdit: null,
+      isConfirmationModalOpen: false,
+      bookToDelete: null
     };
   }
 
@@ -100,6 +104,20 @@ export default class MyLibrary extends Component {
     }
   };
 
+  openConfirmationModal = (book) => {
+    this.setState({ isConfirmationModalOpen: true, bookToDelete: book });
+  };
+  
+  closeConfirmationModal = () => {
+    this.setState({ isConfirmationModalOpen: false, bookToDelete: null });
+  };
+  
+  handleConfirmDelete = async () => {
+    if (this.state.bookToDelete) {
+      await this.handleDeleteBook(this.state.bookToDelete.id);
+      this.closeConfirmationModal();
+    }
+  };
 
 
     render() {
@@ -118,6 +136,13 @@ export default class MyLibrary extends Component {
                     onBookAdded={this.handleBookAdded}
                     bookToEdit={bookToEdit} 
                     onBookUpdated={this.handleBookUpdated} 
+                />
+
+                <DeleteModal
+                    isOpen={this.state.isConfirmationModalOpen}
+                    onClose={this.closeConfirmationModal}
+                    onConfirm={this.handleConfirmDelete}
+                    bookTitle={this.state.bookToDelete ? this.state.bookToDelete.title : ''}
                 />
 
                 {this.state.loading ? (
@@ -146,17 +171,16 @@ export default class MyLibrary extends Component {
                                 <p>{book.author}</p>
                                 <p>{book.year_published}</p>
 
-                                <div className="book-actions">
+                            </div>
+
+                            <div className="book-actions">
                                 <button onClick={() => this.openEditModal(book)}>
                                     <FontAwesomeIcon icon="edit" />
                                 </button>
-                                <button onClick={() => this.handleDeleteBook(book.id)}>
+                                <button onClick={() => this.openConfirmationModal(book)}>
                                     <FontAwesomeIcon icon="trash" />
                                 </button>
-                                </div>
                             </div>
-
-                            
 
                         </div>
                     ))}
