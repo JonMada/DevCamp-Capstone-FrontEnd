@@ -40,7 +40,7 @@ export default class App extends Component {
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
-        const currentTime = Date.now() / 1000; 
+        const currentTime = Date.now() / 2000; 
 
         
         if (decodedToken.exp < currentTime) {
